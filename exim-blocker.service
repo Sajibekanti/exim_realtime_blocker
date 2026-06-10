@@ -1,0 +1,15 @@
+[Unit]
+Description=WHM Real-Time Outbound Email Spam Account Suppress Daemon
+After=exim.service dovecot.service
+Wants=exim.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/local/bin/exim_realtime_blocker.sh
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/exim_realtime_blocker.log
+StandardError=append:/var/log/exim_realtime_blocker.log
+
+[Install]
+WantedBy=multi-user.target
